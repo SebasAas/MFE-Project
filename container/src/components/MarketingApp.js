@@ -1,4 +1,4 @@
-import { mount as marketingMount } from 'marketingModule/marketingIndex';
+import { mount as marketingMount } from 'MarketingModule/MarketingApp';
 import React, { useRef, useEffect } from 'react'
 
 function MarketingApp() {
@@ -7,7 +7,7 @@ function MarketingApp() {
         marketingMount(containerRef.current)
     }, [])
 
-    return(
+    return (
         <div ref={containerRef}></div>
     )
 }
