@@ -3,12 +3,10 @@ name: deploy-container-dev
 on:
   push:
     branches:
-      - development
-    branches-ignore:
-      - master
+      - develop
 		paths:
-			# Only run this workflow when we specific change something inside this folder 
-			- 'container/**'
+		# Only run this workflow when we specific change something inside this folder 
+		- 'container/**'
 
 # We are saying that the default folder, where im going to install, uninstall, config, the project
 # is the folder where run all the steps in a workflow.
@@ -19,11 +17,10 @@ defaults:
 jobs:
 	build:
 		runs-on: ubuntu-latest
+		
     steps:
-			- name: Check out repository
-			  uses: actions/checkout@v2
-			  run: |
-						npm install
-						npm run build
+			- uses: actions/checkout@v2
+			- run: npm install
+			- run: npm run build
 
 # Documentation https://docs.github.com/pt/actions/reference/workflow-syntax-for-github-actions#
