@@ -13,7 +13,7 @@ const devConfig = {
         filename: 'main.bundle.js',
         path: path.resolve(__dirname, '../dist')
     },
-    devServer : {
+    devServer: {
         port: 8080,
         historyApiFallback: {
             index: 'index.html'
@@ -26,7 +26,7 @@ const devConfig = {
         new ModuleFederationPlugin({
             name: 'container',
             remotes: {
-                marketingModule: 'marketing@http://localhost:8081/remoteEntry.js'
+                MarketingModule: 'marketing@http://localhost:8081/remoteEntry.js'
             },
             shared: {
                 react: {

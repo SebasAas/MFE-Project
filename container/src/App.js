@@ -1,9 +1,9 @@
-import React from 'react'
-import MarketingApp from './components/MarketingApp'
+import React from 'react';
+import MarketingApp from './components/MarketingApp';
 
 function App() {
     return (
-        <MarketingApp/>
+        <MarketingApp />
     )
 }
 

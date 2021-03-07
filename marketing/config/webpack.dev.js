@@ -1,6 +1,5 @@
 const { merge } = require('webpack-merge');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const commonConfig = require('./webpack.common');
 
@@ -13,7 +12,7 @@ const devConfig = {
         filename: 'main.bundle.js',
         path: path.resolve(__dirname, '../dist')
     },
-    devServer : {
+    devServer: {
         port: 8081,
         historyApiFallback: {
             index: 'index.html'
@@ -21,22 +20,25 @@ const devConfig = {
     },
     plugins: [
         new ModuleFederationPlugin({
-          name: 'marketing',
-          filename: 'remoteEntry.js',
-          exposes: {
-            './marketingIndex': './src/bootstrap',
-          },
-          shared: {
-              react: {
-                  singleton: true
-              },
-              "react-dom": {
-                  singleton: true
-              }
-          }
-        }),
-        new HtmlWebpackPlugin({
-            template: './public/index.html'
+            name: 'marketing',
+            filename: 'remoteEntry.js',
+            exposes: {
+                './MarketingApp': './src/bootstrap',
+            },
+            shared: {
+                react: {
+                    singleton: true
+                },
+                "react-dom": {
+                    singleton: true
+                },
+                "@material-ui/core": {
+                    singleton: true
+                },
+                "@material-ui/icons": {
+                    singleton: true
+                }
+            }
         })
     ]
 }
