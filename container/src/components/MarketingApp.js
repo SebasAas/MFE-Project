@@ -1,5 +1,5 @@
 import { mount as marketingMount } from 'MarketingModule/MarketingApp';
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react';
 
 function MarketingApp() {
     const containerRef = useRef(null)
