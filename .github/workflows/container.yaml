@@ -1,4 +1,4 @@
-name: deploy-container
+name: Deploy to Heroku -- Container --
 
 on:
   push:
@@ -6,19 +6,18 @@ on:
       - master
     paths:
       - "container/**"
+      - ".github/workflows/container.yaml"
 
 defaults:
   run:
     working-directory: container
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "mfe-module-container" #Must be unique in Heroku
-          heroku_email: "sebastian.soplan@davinci.edu.ar"
+      - name: Add module remote origin
+        run: git remote add heroku-container https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+      - name: Deploy module to Heroku
+        run: git push heroku-container `git subtree split --prefix container master`:refs/heads/master --force
